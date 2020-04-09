@@ -18,11 +18,11 @@ This starter includes:
 
 * **Logback** - Console and rotating file logging - see `logback.xml`_
 * **Junit 5 + hamcrest** - Testing frameworks
-* **Executable jar creation** - See gradle-shade-plugin plugin section in `pom.xml`_
+* **Executable jar creation** - See gradle-shade-plugin plugin section in `build.gradle`_
 * **Travis CI with codecov template** - Basic travis CI configuration with codecov - see `travis.yml`_
-* **Basic gradle profiles with parameter injection** - See `temp.properties`_ and `pom.xml`_
+* **Basic gradle profiles with parameter injection** - See `temp.properties`_ and `build.gradle`_
 * **GitHub templates** - See `.github folder`_ and .md files in root folder
-* **Code quality tools** - Checkstyle, PMD and SpotBugs configuration - see `pom.xml`_
+* **Code quality tools** - Checkstyle, PMD and SpotBugs configuration - see `build.gradle`_
 
 Usage
 =====
@@ -46,7 +46,7 @@ License
 -----
 
 .. _`logback.xml`: https://github.com/yevgenykuz/java-gradle-starter/blob/master/src/main/resources/logback.xml
-.. _`pom.xml`: https://github.com/yevgenykuz/java-gradle-starter/blob/master/pom.xml
+.. _`build.gradle`: https://github.com/yevgenykuz/java-gradle-starter/blob/master/build.gradle
 .. _`travis.yml`: https://github.com/yevgenykuz/java-gradle-starter/blob/master/.travis.yml
 .. _`temp.properties`: https://github.com/yevgenykuz/java-gradle-starter/blob/master/src/main/resources/temp.properties
 .. _`.github folder`: https://github.com/yevgenykuz/java-gradle-starter/tree/master/.github
