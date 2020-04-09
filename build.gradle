@@ -4,9 +4,9 @@ plugins {
     id 'maven-publish' // add project information (developers, license, etc.) and publish to maven repository
     id 'signing' // generate a signature and checksum files for each artifact.
     id 'jacoco' // codecov code coverage integration with JaCoCo [jacocoTestReport]
-    id 'checkstyle' // Checkstyle checks
-    id 'pmd' // PMD checks
-    id 'com.github.spotbugs' version '4.0.5' // SpotBugs checks
+    id 'checkstyle' // Checkstyle checks [check]
+    id 'pmd' // PMD checks [check]
+    id 'com.github.spotbugs' version '4.0.5' // SpotBugs checks [check]
 }
 
 group = 'me.yevgeny'
