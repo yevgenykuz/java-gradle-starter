@@ -107,6 +107,10 @@ javadoc {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
+
 // codecov code coverage integration with JaCoCo - enable XML reports
 jacocoTestReport {
     reports {
@@ -114,6 +118,7 @@ jacocoTestReport {
         html.enabled true
     }
 }
+check.dependsOn jacocoTestReport
 
 // Checkstyle checks
 checkstyle {
