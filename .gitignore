@@ -1,0 +1,14 @@
+# IDE
+.idea/*
+!.idea/codeStyles/
+*.iml
+
+# Gradle
+.gradle
+
+# Java compiled/packaged files
+build/
+out/
+
+# Logs:
+logs/

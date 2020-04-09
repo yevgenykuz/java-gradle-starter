@@ -1,0 +1,147 @@
+plugins {
+    id 'java' // add java compilation, testing and bundling
+    id 'com.github.johnrengelman.shadow' version '5.2.0' // build an executable JAR with all dependencies [shadowJar]
+    id 'maven-publish' // add project information (developers, license, etc.) and publish to maven repository
+    id 'signing' // generate a signature and checksum files for each artifact.
+    id 'jacoco' // codecov code coverage integration with JaCoCo [jacocoTestReport]
+    id 'checkstyle' // Checkstyle checks
+    id 'pmd' // PMD checks
+    id 'com.github.spotbugs' version '4.0.5' // SpotBugs checks
+}
+
+group = 'me.yevgeny'
+version = '1.0.0-SNAPSHOT'
+description = 'Java, gradle based, playground starter project'
+
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
+    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1' // SpotBugs security checks plugin
+}
+
+// set compiler encoding to UTF-8 in all tasks with JavaCompile type
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// profiles with parameter injection, use with gradle -Pprofile=development [task] or gradle -Pprofile=production [task]
+// see profile-development.gradle and profile-production.gradle
+if (!hasProperty('profile')) ext.profile = 'development'
+apply from: "profile-${profile}.gradle"
+processResources {
+    filesMatching('**/temp.properties') {
+        //noinspection UnnecessaryQualifiedReference
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [
+                'p1': project.property('p1')
+        ]
+    }
+}
+
+// point to main class to run compiled [jar] and [shadowJar] with 'java -jar'
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'me.yevgeny.Main'
+        )
+    }
+    classifier 'original' // append '-original' to compiled jar
+}
+
+shadowJar {
+    classifier null // rename compiled shadowJar (with dependencies) to the original name
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                url = 'https://github.com/yevgenykuz/java-gradle-starter'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'yevgenykuz'
+                        name = 'Yevgeny Kuznetsov'
+                        email = 'yevgenyku@gmail.com'
+                        url = 'https://github.com/yevgenykuz'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/yevgenykuz/java-gradle-starter'
+                    connection = 'https://github.com/yevgenykuz/java-gradle-starter'
+                }
+                issueManagement {
+                    url = 'https://github.com/yevgenykuz/java-gradle-starter/issues'
+                    system = 'GitHub'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+// codecov code coverage integration with JaCoCo - enable XML reports
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+// Checkstyle checks
+checkstyle {
+    toolVersion '8.31'
+    configFile file('tools/checkstyle.xml')
+    maxWarnings 0
+}
+
+// PMD checks
+pmd {
+    toolVersion '6.21.0'
+    ruleSetFiles file('tools/pmd-ruleset.xml')
+    consoleOutput true
+}
+
+// SpotBugs checks
+spotbugs {
+    effort 'max'
+}
+// SpotBugs workarounds
+//noinspection UnnecessaryQualifiedReference
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+    // SpotBugs classpath issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/115
+    auxClassPaths = sourceSets."${(it.name - ~/^spotbugs/).uncapitalize()}".compileClasspath
+    // SpotBugs HTML report issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/228
+    //noinspection GroovyMissingReturnStatement
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
