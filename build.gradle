@@ -9,7 +9,7 @@ plugins {
     id 'com.github.spotbugs' version '4.6.0' // SpotBugs checks [check]
 }
 
-group = 'me.yevgeny'
+group = 'com.yevgenyk'
 version = '1.0.0-SNAPSHOT'
 description = 'Java, gradle based, playground starter project'
 
@@ -49,7 +49,7 @@ processResources {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'me.yevgeny.Main'
+                'Main-Class': 'com.yevgenyk.Main'
         )
     }
     classifier 'original' // append '-original' to compiled jar
@@ -81,7 +81,7 @@ publishing {
                         id = 'yevgenykuz'
                         name = 'Yevgeny Kuznetsov'
                         email = 'yevgenyku@gmail.com'
-                        url = 'https://github.com/yevgenykuz'
+                        url = 'https://yevgenyk.com'
                     }
                 }
                 scm {
