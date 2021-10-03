@@ -6,7 +6,7 @@ plugins {
     id 'jacoco' // codecov code coverage integration with JaCoCo [jacocoTestReport]
     id 'checkstyle' // Checkstyle checks [check]
     id 'pmd' // PMD checks [check]
-    id 'com.github.spotbugs' version '4.7.3' // SpotBugs checks [check]
+    id 'com.github.spotbugs' version '4.7.6' // SpotBugs checks [check]
 }
 
 group = 'com.yevgenyk'
