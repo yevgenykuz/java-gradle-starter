@@ -1,6 +1,6 @@
 plugins {
     id 'java' // add java compilation, testing and bundling
-    id 'com.github.johnrengelman.shadow' version '7.1.0' // build an executable JAR with all dependencies [shadowJar]
+    id 'com.github.johnrengelman.shadow' version '7.1.2' // build an executable JAR with all dependencies [shadowJar]
     id 'maven-publish' // add project information (developers, license, etc.) and publish to maven repository
     id 'signing' // generate a signature and checksum files for each artifact.
     id 'jacoco' // codecov code coverage integration with JaCoCo [jacocoTestReport]
