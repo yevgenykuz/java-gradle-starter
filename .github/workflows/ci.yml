@@ -22,6 +22,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test
+          gradle-version: current
+          arguments: check
       - name: Report code coverage to codecov
         uses: codecov/codecov-action@v3
