@@ -21,18 +21,18 @@ The code style is defined in Intellij project files in the repo and also by the 
 Issue labels will be assigned by the project maintainers.  
 Here are the current labels:
 
- * **bug**: Something isn't working
- * **enhancement**: Minor tweak/addition to existing behavior
- * **feature**: New behavior, bigger than enhancement
- * **question**: No need to modify code to address the issue, usually a usage problem
- * **reproducible**: Can easily reproduce, meaning enough information was provided
- * **repro-needed**: Some code to be able to reproduce and debug locally, otherwise there's not much to do
- * **duplicate**: This issue or pull request already exists
- * **wontfix**: Working as intended, or won't be fixed due to compatibility or other reasons
- * **invalid**: There isn't enough information to make a verdict, or unrelated to this project
- * **meta**: Issue is not in the library code, but rather in documentation, wiki, build process, releases
- * **help wanted**: Issue is up for grabs
- * **good first issue**: Good for newcomers
+* **bug**: Something isn't working
+* **duplicate**: This issue or pull request already exists
+* **enhancement**: Minor tweak/addition to existing behavior
+* **feature**: New behavior, bigger than enhancement
+* **good first issue**: Good for newcomers
+* **help wanted**: Issue is up for grabs
+* **invalid**: There isn't enough information to make a verdict, or unrelated to this project
+* **meta**: Issue is not in the library code, but rather in documentation, wiki, build process, releases
+* **question**: No need to modify code to address the issue, usually a usage problem
+* **repro-needed**: Some code to be able to reproduce and debug locally, otherwise there's not much to do
+* **reproducible**: Can easily reproduce, meaning enough information was provided
+* **wontfix**: Working as intended, or won't be fixed due to compatibility or other reasons
  
 [1]: https://github.com/yevgenykuz/java-gradle-starter/blob/master/CODE_OF_CONDUCT.md
 [2]: https://github.com/yevgenykuz/java-gradle-starter/blob/master/README.rst
