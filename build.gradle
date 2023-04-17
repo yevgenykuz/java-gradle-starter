@@ -1,6 +1,6 @@
 plugins {
     id 'java' // add java compilation, testing and bundling
-    id 'com.github.johnrengelman.shadow' version '7.1.2' // build an executable JAR with all dependencies [shadowJar]
+    id 'com.github.johnrengelman.shadow' version '8.1.1' // build an executable JAR with all dependencies [shadowJar]
     id 'maven-publish' // add project information (developers, license, etc.) and publish to maven repository
     id 'signing' // generate a signature and checksum files for each artifact.
     id 'jacoco' // codecov code coverage integration with JaCoCo [jacocoTestReport]
@@ -28,7 +28,7 @@ dependencies {
 }
 
 // set compiler encoding to UTF-8 in all tasks with JavaCompile type
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
@@ -52,11 +52,11 @@ jar {
                 'Main-Class': 'com.yevgenyk.Main'
         )
     }
-    classifier 'original' // append '-original' to compiled jar
+    setArchiveClassifier('original') // append '-original' to compiled jar
 }
 
 shadowJar {
-    classifier null // rename compiled shadowJar (with dependencies) to the original name
+    setArchiveClassifier(null) // rename compiled shadowJar (with dependencies) to the original name
 }
 
 java {
@@ -114,22 +114,22 @@ test {
 // codecov code coverage integration with JaCoCo - enable XML reports
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.enabled true
+        xml.required = true
+        html.required = true
     }
 }
 check.dependsOn jacocoTestReport
 
 // Checkstyle checks
 checkstyle {
-    toolVersion '8.31'
+    toolVersion '10.3.3'
     configFile file('tools/checkstyle.xml')
     maxWarnings 0
 }
 
 // PMD checks
 pmd {
-    toolVersion '6.21.0'
+    toolVersion '6.39.0'
     ruleSetFiles file('tools/pmd-ruleset.xml')
     consoleOutput true
 }
@@ -140,7 +140,7 @@ spotbugs {
 }
 // SpotBugs workarounds
 //noinspection UnnecessaryQualifiedReference
-tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
     // SpotBugs classpath issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/115
     auxClassPaths = sourceSets."${(it.name - ~/^spotbugs/).uncapitalize()}".compileClasspath
     // SpotBugs HTML report issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/228
