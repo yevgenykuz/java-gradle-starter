@@ -14,9 +14,14 @@ import org.slf4j.LoggerFactory;
  **/
 public final class Main {
 
+    /** Properties File name. */
     public static final String PROPERTIES_FILE = "temp.properties";
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
+    /**
+     * Main function.
+     * @param args The arguments
+     */
     public static void main(final String[] args) {
         final Properties properties = loadPropertiesFromFile(PROPERTIES_FILE);
         properties.forEach((k, v) -> LOG.info(k + "=" + v));
