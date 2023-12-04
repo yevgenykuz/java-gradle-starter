@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'ch.qos.logback:logback-classic:1.4.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
 
