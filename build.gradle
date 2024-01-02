@@ -135,18 +135,10 @@ pmd {
 }
 
 // SpotBugs checks
+import com.github.spotbugs.snom.Effort
 spotbugs {
-    effort 'max'
-}
-// SpotBugs workarounds
-//noinspection UnnecessaryQualifiedReference
-tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
-    // SpotBugs classpath issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/115
-    auxClassPaths = sourceSets."${(it.name - ~/^spotbugs/).uncapitalize()}".compileClasspath
-    // SpotBugs HTML report issue https://github.com/spotbugs/spotbugs-gradle-plugin/issues/228
-    //noinspection GroovyMissingReturnStatement
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
+    effort = Effort.MAX
 }
