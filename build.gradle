@@ -13,7 +13,7 @@ group = 'com.yevgenyk'
 version = '1.0.0-SNAPSHOT'
 description = 'Java, gradle based, playground starter project'
 
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
