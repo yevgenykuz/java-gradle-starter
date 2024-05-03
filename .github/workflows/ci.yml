@@ -26,6 +26,7 @@ jobs:
           arguments: check
       - name: Report code coverage to codecov
         uses: codecov/codecov-action@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.java_version == '21'
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
