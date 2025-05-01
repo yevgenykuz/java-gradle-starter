@@ -25,7 +25,7 @@ dependencies {
     testImplementation 'org.junit.platform:junit-platform-console-standalone:1.12.1'
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0' // SpotBugs security checks plugin
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0' // SpotBugs security checks plugin
 }
 
 // set compiler encoding to UTF-8 in all tasks with JavaCompile type
